@@ -177,7 +177,7 @@
     background: transparent;
   }
   .ex-item.optional .ex-name::after {
-    content: " (optional)";
+    content: "";
     font-size: 10px; font-weight: 400;
     color: #555; font-style: italic;
   }
@@ -231,19 +231,11 @@
     <div class="title">PPL PROGRAM</div>
     <div class="subtitle">6-Day Push · Pull · Legs &nbsp;·&nbsp; A / B Split</div>
   </div>
-  <div class="badge-row">
-    <span class="badge badge-push">⬆ Push</span>
-    <span class="badge badge-pull">⬇ Pull</span>
-    <span class="badge badge-legs">⬤ Legs</span>
-    <span class="badge badge-prog">🔺 Progress weekly</span>
-    <span class="badge badge-opt">⋯ Optional</span>
-  </div>
 </div>
 
 <!-- TAB NAV -->
 <div class="tab-nav">
-  <button class="tab push active" onclick="showTab('overview',this)">Overview</button>
-  <button class="tab push"        onclick="showTab('day1',this)">Push A</button>
+  <button class="tab push active" onclick="showTab('day1',this)">Push A</button>
   <button class="tab pull"        onclick="showTab('day2',this)">Pull A</button>
   <button class="tab legs"        onclick="showTab('day3',this)">Legs A</button>
   <button class="tab push"        onclick="showTab('day4',this)">Push B</button>
@@ -251,108 +243,12 @@
   <button class="tab legs"        onclick="showTab('day6',this)">Legs B</button>
 </div>
 
-<!-- ══════════════ OVERVIEW ══════════════ -->
-<div id="tab-overview" class="day-panel active" style="padding:16px;">
-  <div class="overview-grid">
-
-    <div class="mini-card">
-      <div class="mini-header"><div class="mini-dot" style="background:var(--push)"></div><span class="mini-title" style="color:var(--push)">Push A</span></div>
-      <div class="mini-focus">Chest · Shoulders · Tris</div>
-      <div class="mini-list">
-        <div class="mini-ex prog"><span>Flat Bench</span><span class="mini-sets">4×6–10 🔺</span></div>
-        <div class="mini-ex prog"><span>Incline DB Press</span><span class="mini-sets">3×8–12 🔺</span></div>
-        <div class="mini-ex prog"><span>OHP</span><span class="mini-sets">3×6–10 🔺</span></div>
-        <div class="mini-ex"><span>Lateral Raises</span><span class="mini-sets">4×12–15</span></div>
-        <div class="mini-ex"><span>Tricep Pushdown</span><span class="mini-sets">3×10–15</span></div>
-        <div class="mini-ex"><span>OH Tricep Ext</span><span class="mini-sets">3×10–15</span></div>
-        <div class="mini-ex opt"><span>Wrist Curls</span><span class="mini-sets">2–3×15–20</span></div>
-      </div>
-    </div>
-
-    <div class="mini-card">
-      <div class="mini-header"><div class="mini-dot" style="background:var(--pull)"></div><span class="mini-title" style="color:var(--pull)">Pull A</span></div>
-      <div class="mini-focus">Back · Biceps · Rear Delt</div>
-      <div class="mini-list">
-        <div class="mini-ex prog"><span>Barbell Row</span><span class="mini-sets">4×6–10 🔺</span></div>
-        <div class="mini-ex prog"><span>Chest-Sup Row</span><span class="mini-sets">3×8–12 🔺</span></div>
-        <div class="mini-ex prog"><span>Lat Pulldown</span><span class="mini-sets">3×8–12 🔺</span></div>
-        <div class="mini-ex"><span>Face Pulls</span><span class="mini-sets">3×12–15</span></div>
-        <div class="mini-ex"><span>DB Bicep Curls</span><span class="mini-sets">3×10–12</span></div>
-        <div class="mini-ex"><span>Hammer Curls</span><span class="mini-sets">3×10–12</span></div>
-        <div class="mini-ex opt"><span>Shrugs</span><span class="mini-sets">3×10–15</span></div>
-      </div>
-    </div>
-
-    <div class="mini-card">
-      <div class="mini-header"><div class="mini-dot" style="background:var(--legs)"></div><span class="mini-title" style="color:var(--legs)">Legs A</span></div>
-      <div class="mini-focus">Quads · Hamstrings · Calves</div>
-      <div class="mini-list">
-        <div class="mini-ex prog"><span>Squats</span><span class="mini-sets">4×5–8 🔺</span></div>
-        <div class="mini-ex prog"><span>RDLs</span><span class="mini-sets">3×6–10 🔺</span></div>
-        <div class="mini-ex"><span>Leg Extensions</span><span class="mini-sets">3×12–15</span></div>
-        <div class="mini-ex"><span>Leg Curls</span><span class="mini-sets">3×10–15</span></div>
-        <div class="mini-ex prog"><span>Calf Raises</span><span class="mini-sets">4×12–20 🔺</span></div>
-        <div class="mini-ex"><span>Cable Crunches</span><span class="mini-sets">3×12–15</span></div>
-      </div>
-    </div>
-
-    <div class="mini-card">
-      <div class="mini-header"><div class="mini-dot" style="background:var(--push)"></div><span class="mini-title" style="color:var(--push)">Push B</span></div>
-      <div class="mini-focus">Chest · Shoulders · Tris</div>
-      <div class="mini-list">
-        <div class="mini-ex prog"><span>Incline DB Press</span><span class="mini-sets">4×6–10 🔺</span></div>
-        <div class="mini-ex"><span>Cable Fly H→L</span><span class="mini-sets">3×12–15</span></div>
-        <div class="mini-ex prog"><span>OHP</span><span class="mini-sets">3×6–10 🔺</span></div>
-        <div class="mini-ex"><span>Lateral Raises</span><span class="mini-sets">4×12–15</span></div>
-        <div class="mini-ex"><span>Tricep Pushdown</span><span class="mini-sets">3×10–15</span></div>
-        <div class="mini-ex"><span>OH Tricep Ext</span><span class="mini-sets">3×10–15</span></div>
-        <div class="mini-ex opt"><span>Wrist Curls</span><span class="mini-sets">2–3×15–20</span></div>
-      </div>
-    </div>
-
-    <div class="mini-card">
-      <div class="mini-header"><div class="mini-dot" style="background:var(--pull)"></div><span class="mini-title" style="color:var(--pull)">Pull B</span></div>
-      <div class="mini-focus">Back · Biceps · Rear Delt</div>
-      <div class="mini-list">
-        <div class="mini-ex prog"><span>Lat Pulldown</span><span class="mini-sets">4×6–10 🔺</span></div>
-        <div class="mini-ex prog"><span>Chest-Sup Row</span><span class="mini-sets">3×8–12 🔺</span></div>
-        <div class="mini-ex prog"><span>Seated Cable Row</span><span class="mini-sets">3×8–12 🔺</span></div>
-        <div class="mini-ex"><span>Face Pulls</span><span class="mini-sets">3×12–15</span></div>
-        <div class="mini-ex"><span>Bicep Curls</span><span class="mini-sets">3×10–12</span></div>
-        <div class="mini-ex"><span>Hammer Curls</span><span class="mini-sets">3×10–12</span></div>
-        <div class="mini-ex opt"><span>Shrugs</span><span class="mini-sets">3×10–15</span></div>
-      </div>
-    </div>
-
-    <div class="mini-card">
-      <div class="mini-header"><div class="mini-dot" style="background:var(--legs)"></div><span class="mini-title" style="color:var(--legs)">Legs B</span></div>
-      <div class="mini-focus">Quads · Hamstrings · Calves</div>
-      <div class="mini-list">
-        <div class="mini-ex prog"><span>Leg Press</span><span class="mini-sets">4×8–12 🔺</span></div>
-        <div class="mini-ex prog"><span>Bulgarian Split</span><span class="mini-sets">3×8–12 🔺</span></div>
-        <div class="mini-ex"><span>Leg Extensions</span><span class="mini-sets">3×12–15</span></div>
-        <div class="mini-ex"><span>Leg Curls</span><span class="mini-sets">3×10–15</span></div>
-        <div class="mini-ex prog"><span>Calf Raises</span><span class="mini-sets">4×12–20 🔺</span></div>
-        <div class="mini-ex"><span>Cable Crunches</span><span class="mini-sets">3×12–15</span></div>
-      </div>
-    </div>
-
-  </div>
-  <div class="footer"><strong>Day 7</strong> — Rest &amp; Recover &nbsp;·&nbsp; 🔺 Progress weight weekly</div>
-</div>
-
 <!-- ══════════════ PUSH A ══════════════ -->
-<div id="tab-day1" class="day-panel">
+<div id="tab-day1" class="day-panel active">
   <div class="day-card">
     <div class="day-header push">
       <span class="day-label">🔴 Push A</span>
-      <span class="focus-tag">Chest · Shoulders · Tris</span>
-    </div>
-    <div class="legend-row">
-      <span class="legend-item"><span class="legend-dot" style="background:var(--progress)"></span>🔺 Progress weight weekly</span>
-      <span class="legend-item"><span class="legend-dot" style="background:#2a2a2a;border:1px solid #444"></span>⚡ Control &gt; weight</span>
-    </div>
-    <div class="ex-list">
+    </div>    <div class="ex-list">
       <div class="ex-item progress">
         <span class="ex-name">Flat Bench (DB / Barbell)</span>
         <div class="ex-detail"><span class="sets-badge">4 sets</span><span class="reps-badge">6–10 reps</span></div>
@@ -368,15 +264,15 @@
       <div class="divider"></div>
       <div class="ex-item">
         <span class="ex-name">Lateral Raises</span>
-        <div class="ex-detail"><span class="sets-badge">4 sets</span><span class="reps-badge">12–15 reps</span><span class="tip-badge">⚡ control</span></div>
+        <div class="ex-detail"><span class="sets-badge">4 sets</span><span class="reps-badge">12–15 reps</span></div>
       </div>
       <div class="ex-item">
         <span class="ex-name">Tricep Pushdown</span>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–15 reps</span><span class="tip-badge">⚡</span></div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–15 reps</span></div>
       </div>
       <div class="ex-item">
         <span class="ex-name">Overhead Tricep Extension</span>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–15 reps</span><span class="tip-badge">⚡</span></div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–15 reps</span></div>
       </div>
       <div class="divider"></div>
       <div class="ex-item optional">
@@ -392,13 +288,7 @@
   <div class="day-card">
     <div class="day-header pull">
       <span class="day-label">🔵 Pull A</span>
-      <span class="focus-tag">Back · Biceps · Rear Delt</span>
-    </div>
-    <div class="legend-row">
-      <span class="legend-item"><span class="legend-dot" style="background:var(--progress)"></span>🔺 Progress weight weekly</span>
-      <span class="legend-item"><span class="legend-dot" style="background:#2a2a2a;border:1px solid #444"></span>⚡ Control &gt; weight</span>
-    </div>
-    <div class="ex-list">
+    </div>    <div class="ex-list">
       <div class="ex-item progress">
         <span class="ex-name">Barbell Row</span>
         <div class="ex-detail"><span class="sets-badge">4 sets</span><span class="reps-badge">6–10 reps</span></div>
@@ -414,15 +304,15 @@
       <div class="divider"></div>
       <div class="ex-item">
         <span class="ex-name">Face Pulls</span>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">12–15 reps</span><span class="tip-badge">⚡</span></div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">12–15 reps</span></div>
       </div>
       <div class="ex-item">
         <span class="ex-name">DB Bicep Curls</span>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–12 reps</span><span class="tip-badge">⚡</span></div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–12 reps</span></div>
       </div>
       <div class="ex-item">
         <span class="ex-name">Hammer Curls</span>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–12 reps</span><span class="tip-badge">⚡</span></div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–12 reps</span></div>
       </div>
       <div class="divider"></div>
       <div class="ex-item optional">
@@ -438,13 +328,7 @@
   <div class="day-card">
     <div class="day-header legs">
       <span class="day-label">🟢 Legs A</span>
-      <span class="focus-tag">Quads · Hamstrings · Calves</span>
-    </div>
-    <div class="legend-row">
-      <span class="legend-item"><span class="legend-dot" style="background:var(--progress)"></span>🔺 Progress weight weekly</span>
-      <span class="legend-item"><span class="legend-dot" style="background:#2a2a2a;border:1px solid #444"></span>⚡ Control &gt; weight</span>
-    </div>
-    <div class="ex-list">
+    </div>    <div class="ex-list">
       <div class="ex-item progress">
         <span class="ex-name">Squats</span>
         <div class="ex-detail"><span class="sets-badge">4 sets</span><span class="reps-badge">5–8 reps</span></div>
@@ -456,11 +340,11 @@
       <div class="divider"></div>
       <div class="ex-item">
         <span class="ex-name">Leg Extensions</span>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">12–15 reps</span><span class="tip-badge">⚡</span></div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">12–15 reps</span></div>
       </div>
       <div class="ex-item">
         <span class="ex-name">Leg Curls</span>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–15 reps</span><span class="tip-badge">⚡</span></div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–15 reps</span></div>
       </div>
       <div class="ex-item progress">
         <span class="ex-name">Calf Raises (slow stretch)</span>
@@ -479,20 +363,14 @@
   <div class="day-card">
     <div class="day-header push">
       <span class="day-label">🔴 Push B</span>
-      <span class="focus-tag">Chest · Shoulders · Tris</span>
-    </div>
-    <div class="legend-row">
-      <span class="legend-item"><span class="legend-dot" style="background:var(--progress)"></span>🔺 Progress weight weekly</span>
-      <span class="legend-item"><span class="legend-dot" style="background:#2a2a2a;border:1px solid #444"></span>⚡ Control &gt; weight</span>
-    </div>
-    <div class="ex-list">
+    </div>    <div class="ex-list">
       <div class="ex-item progress">
         <span class="ex-name">Incline DB Press</span>
         <div class="ex-detail"><span class="sets-badge">4 sets</span><span class="reps-badge">6–10 reps</span></div>
       </div>
       <div class="ex-item">
         <span class="ex-name">Cable Fly (High → Low)</span>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">12–15 reps</span><span class="tip-badge">⚡</span></div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">12–15 reps</span></div>
       </div>
       <div class="ex-item progress">
         <span class="ex-name">Overhead Shoulder Press</span>
@@ -501,15 +379,15 @@
       <div class="divider"></div>
       <div class="ex-item">
         <span class="ex-name">Lateral Raises</span>
-        <div class="ex-detail"><span class="sets-badge">4 sets</span><span class="reps-badge">12–15 reps</span><span class="tip-badge">⚡ control</span></div>
+        <div class="ex-detail"><span class="sets-badge">4 sets</span><span class="reps-badge">12–15 reps</span></div>
       </div>
       <div class="ex-item">
         <span class="ex-name">Tricep Pushdown</span>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–15 reps</span><span class="tip-badge">⚡</span></div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–15 reps</span></div>
       </div>
       <div class="ex-item">
         <span class="ex-name">Overhead Tricep Extension</span>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–15 reps</span><span class="tip-badge">⚡</span></div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–15 reps</span></div>
       </div>
       <div class="divider"></div>
       <div class="ex-item optional">
@@ -525,13 +403,7 @@
   <div class="day-card">
     <div class="day-header pull">
       <span class="day-label">🔵 Pull B</span>
-      <span class="focus-tag">Back · Biceps · Rear Delt</span>
-    </div>
-    <div class="legend-row">
-      <span class="legend-item"><span class="legend-dot" style="background:var(--progress)"></span>🔺 Progress weight weekly</span>
-      <span class="legend-item"><span class="legend-dot" style="background:#2a2a2a;border:1px solid #444"></span>⚡ Control &gt; weight</span>
-    </div>
-    <div class="ex-list">
+    </div>    <div class="ex-list">
       <div class="ex-item progress">
         <span class="ex-name">Lat Pulldown</span>
         <div class="ex-detail"><span class="sets-badge">4 sets</span><span class="reps-badge">6–10 reps</span></div>
@@ -547,15 +419,15 @@
       <div class="divider"></div>
       <div class="ex-item">
         <span class="ex-name">Face Pulls</span>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">12–15 reps</span><span class="tip-badge">⚡</span></div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">12–15 reps</span></div>
       </div>
       <div class="ex-item">
         <span class="ex-name">Bicep Curls</span>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–12 reps</span><span class="tip-badge">⚡</span></div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–12 reps</span></div>
       </div>
       <div class="ex-item">
         <span class="ex-name">Hammer Curls</span>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–12 reps</span><span class="tip-badge">⚡</span></div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–12 reps</span></div>
       </div>
       <div class="divider"></div>
       <div class="ex-item optional">
@@ -571,13 +443,7 @@
   <div class="day-card">
     <div class="day-header legs">
       <span class="day-label">🟢 Legs B</span>
-      <span class="focus-tag">Quads · Hamstrings · Calves</span>
-    </div>
-    <div class="legend-row">
-      <span class="legend-item"><span class="legend-dot" style="background:var(--progress)"></span>🔺 Progress weight weekly</span>
-      <span class="legend-item"><span class="legend-dot" style="background:#2a2a2a;border:1px solid #444"></span>⚡ Control &gt; weight</span>
-    </div>
-    <div class="ex-list">
+    </div>    <div class="ex-list">
       <div class="ex-item progress">
         <span class="ex-name">Leg Press</span>
         <div class="ex-detail"><span class="sets-badge">4 sets</span><span class="reps-badge">8–12 reps</span></div>
@@ -589,11 +455,11 @@
       <div class="divider"></div>
       <div class="ex-item">
         <span class="ex-name">Leg Extensions</span>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">12–15 reps</span><span class="tip-badge">⚡</span></div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">12–15 reps</span></div>
       </div>
       <div class="ex-item">
         <span class="ex-name">Leg Curls</span>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–15 reps</span><span class="tip-badge">⚡</span></div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–15 reps</span></div>
       </div>
       <div class="ex-item progress">
         <span class="ex-name">Calf Raises</span>
