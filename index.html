@@ -69,6 +69,7 @@
   .day-header.push .day-label { color: var(--push); }
   .day-header.pull .day-label { color: var(--pull); }
   .day-header.legs .day-label { color: var(--legs); }
+  .focus-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); background: var(--bg); padding: 3px 8px; border-radius: 6px; }
 
   /* EXERCISE LIST */
   .ex-list { padding: 0 10px 12px; }
@@ -79,7 +80,6 @@
   }
   .ex-item:last-child { margin-bottom: 0; }
 
-  /* progress = golden left border */
   .ex-item.progress {
     background: rgba(255,183,0,0.05);
     border: 1px solid rgba(255,183,0,0.2);
@@ -88,14 +88,13 @@
   .ex-item.progress .ex-name { color: #fff; font-weight: 600; }
   .ex-item.progress .sets-badge { background: rgba(255,183,0,0.14); color: var(--gold); }
 
-  /* optional */
   .ex-item.optional { opacity: 0.45; border: 1px dashed rgba(255,255,255,0.1); background: transparent; }
   .ex-item.optional .ex-name::after { content: " (optional)"; font-size: 10px; font-weight: 400; color: #555; font-style: italic; }
 
   .ex-left { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
   .ex-name { font-weight: 500; font-size: 13px; color: #ccc; min-width: 0; }
 
-  /* Effort dots column */
+  /* Effort dots */
   .effort-dots { display: flex; flex-direction: column; gap: 3px; align-items: center; flex-shrink: 0; }
   .dot { width: 7px; height: 7px; border-radius: 50%; }
   .dot.rir2 { background: #2ECC40; box-shadow: 0 0 4px rgba(46,204,64,0.5); }
@@ -106,7 +105,6 @@
   .sets-badge { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 5px; background: rgba(255,255,255,0.06); color: #bbb; white-space: nowrap; }
   .reps-badge { font-size: 11px; font-weight: 500; color: var(--muted); white-space: nowrap; }
 
-  /* DIVIDER */
   .divider { height: 1px; background: var(--border); margin: 5px 8px 7px; }
 </style>
 </head>
@@ -134,7 +132,10 @@
 <!-- ══════════ PUSH A ══════════ -->
 <div id="tab-day1" class="day-panel active">
   <div class="day-card">
-    <div class="day-header push"><span class="day-label">🔴 Push A</span></div>
+    <div class="day-header push">
+      <span class="day-label">🔴 Push A</span>
+      <span class="focus-tag">Chest Focus</span>
+    </div>
     <div class="ex-list">
 
       <div class="ex-item progress">
@@ -204,13 +205,16 @@
 <!-- ══════════ PULL A ══════════ -->
 <div id="tab-day2" class="day-panel">
   <div class="day-card">
-    <div class="day-header pull"><span class="day-label">🔵 Pull A</span></div>
+    <div class="day-header pull">
+      <span class="day-label">🔵 Pull A</span>
+      <span class="focus-tag">Back Thickness</span>
+    </div>
     <div class="ex-list">
 
       <div class="ex-item progress">
         <div class="ex-left">
           <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir1"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Seated Cable Row</span>
+          <span class="ex-name">Seated Cable Row (Close Grip)</span>
         </div>
         <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">6–10</span></div>
       </div>
@@ -218,7 +222,7 @@
       <div class="ex-item progress">
         <div class="ex-left">
           <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir1"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Chest Supported Row</span>
+          <span class="ex-name">Lat Pulldown</span>
         </div>
         <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">8–12</span></div>
       </div>
@@ -226,7 +230,7 @@
       <div class="ex-item progress">
         <div class="ex-left">
           <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir1"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Lat Pulldown</span>
+          <span class="ex-name">Wide D-Handle Cable Row</span>
         </div>
         <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">8–12</span></div>
       </div>
@@ -252,17 +256,7 @@
       <div class="ex-item">
         <div class="ex-left">
           <div class="effort-dots"><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Hammer Curls</span>
-        </div>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–12</span></div>
-      </div>
-
-      <div class="divider"></div>
-
-      <div class="ex-item optional">
-        <div class="ex-left">
-          <div class="effort-dots"><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Shrugs (go heavy, controlled)</span>
+          <span class="ex-name">Shrugs</span>
         </div>
         <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–15</span></div>
       </div>
@@ -274,7 +268,9 @@
 <!-- ══════════ LEGS A ══════════ -->
 <div id="tab-day3" class="day-panel">
   <div class="day-card">
-    <div class="day-header legs"><span class="day-label">🟢 Legs A</span></div>
+    <div class="day-header legs">
+      <span class="day-label">🟢 Legs A</span>
+    </div>
     <div class="ex-list">
 
       <div class="ex-item progress">
@@ -288,7 +284,7 @@
       <div class="ex-item progress">
         <div class="ex-left">
           <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir2"></div><div class="dot rir1"></div></div>
-          <span class="ex-name">RDLs</span>
+          <span class="ex-name">Romanian Deadlift (RDL)</span>
         </div>
         <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">6–10</span></div>
       </div>
@@ -334,7 +330,9 @@
 <!-- ══════════ PUSH B ══════════ -->
 <div id="tab-day4" class="day-panel">
   <div class="day-card">
-    <div class="day-header push"><span class="day-label">🔴 Push B</span></div>
+    <div class="day-header push">
+      <span class="day-label">🔴 Push B</span>
+    </div>
     <div class="ex-list">
 
       <div class="ex-item progress">
@@ -404,7 +402,10 @@
 <!-- ══════════ PULL B ══════════ -->
 <div id="tab-day5" class="day-panel">
   <div class="day-card">
-    <div class="day-header pull"><span class="day-label">🔵 Pull B</span></div>
+    <div class="day-header pull">
+      <span class="day-label">🔵 Pull B</span>
+      <span class="focus-tag">Lat Width</span>
+    </div>
     <div class="ex-list">
 
       <div class="ex-item progress">
@@ -418,7 +419,7 @@
       <div class="ex-item progress">
         <div class="ex-left">
           <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir1"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Chest Supported Row</span>
+          <span class="ex-name">Wide D-Handle Cable Row</span>
         </div>
         <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">8–12</span></div>
       </div>
@@ -426,7 +427,7 @@
       <div class="ex-item progress">
         <div class="ex-left">
           <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir1"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Seated Cable Row</span>
+          <span class="ex-name">Seated Cable Row (Close Grip)</span>
         </div>
         <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">8–12</span></div>
       </div>
@@ -444,7 +445,7 @@
       <div class="ex-item">
         <div class="ex-left">
           <div class="effort-dots"><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Bicep Curls</span>
+          <span class="ex-name">Hammer Curls</span>
         </div>
         <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–12</span></div>
       </div>
@@ -452,17 +453,7 @@
       <div class="ex-item">
         <div class="ex-left">
           <div class="effort-dots"><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Hammer Curls</span>
-        </div>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–12</span></div>
-      </div>
-
-      <div class="divider"></div>
-
-      <div class="ex-item optional">
-        <div class="ex-left">
-          <div class="effort-dots"><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Shrugs (go heavy, controlled)</span>
+          <span class="ex-name">Shrugs</span>
         </div>
         <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–15</span></div>
       </div>
@@ -474,15 +465,17 @@
 <!-- ══════════ LEGS B ══════════ -->
 <div id="tab-day6" class="day-panel">
   <div class="day-card">
-    <div class="day-header legs"><span class="day-label">🟢 Legs B</span></div>
+    <div class="day-header legs">
+      <span class="day-label">🟢 Legs B</span>
+    </div>
     <div class="ex-list">
 
       <div class="ex-item progress">
         <div class="ex-left">
-          <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir2"></div><div class="dot rir1"></div></div>
+          <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir1"></div><div class="dot rir1"></div></div>
           <span class="ex-name">Barbell Squats</span>
         </div>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">5–8</span></div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">8–10</span></div>
       </div>
 
       <div class="ex-item progress">
