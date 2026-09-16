@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PPL Program</title>
+<title>Workout Program</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --push: #FF4136; --pull: #0074D9; --legs: #2ECC40;
-    --gold: #FFB700; --bg: #0a0a0a; --card: #111111;
-    --card2: #181818; --muted: #888; --border: #2a2a2a;
+    --rest: #FFB700; --gold: #FFB700;
+    --bg: #0a0a0a; --card: #111111; --card2: #181818;
+    --muted: #888; --border: #2a2a2a;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -20,22 +21,22 @@
   }
   @media (max-width: 360px) {
     body { font-size: 13px; }
-    .title { font-size: 30px !important; }
-    .tab { font-size: 10px !important; padding: 8px 9px !important; }
-    .day-label { font-size: 17px !important; }
+    .title { font-size: 28px !important; }
+    .tab { font-size: 9px !important; padding: 8px 8px !important; }
+    .day-label { font-size: 15px !important; }
     .ex-name { font-size: 12px !important; }
-    .header { padding: 18px 14px 14px !important; }
-    .day-panel { padding: 12px !important; }
+    .header { padding: 16px 12px 12px !important; }
+    .day-panel { padding: 10px !important; }
   }
 
   /* HEADER */
   .header {
     background: var(--card); border-bottom: 1px solid var(--border);
-    padding: 24px 20px 16px;
-    padding-top: max(24px, env(safe-area-inset-top, 24px));
+    padding: 22px 20px 14px;
+    padding-top: max(22px, env(safe-area-inset-top, 22px));
     position: sticky; top: 0; z-index: 100;
   }
-  .title { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 2px; line-height: 1; color: #fff; }
+  .title { font-family: 'Bebas Neue', sans-serif; font-size: 34px; letter-spacing: 2px; line-height: 1; color: #fff; }
   .subtitle { color: var(--muted); font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; margin-top: 3px; }
 
   /* LEGEND PILLS */
@@ -49,27 +50,37 @@
   .tab-nav { display: flex; background: var(--card); border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; }
   .tab-nav::-webkit-scrollbar { display: none; }
   .tab {
-    flex: 0 0 auto; padding: 10px 13px; font-size: 11px; font-weight: 600;
-    letter-spacing: 0.4px; text-transform: uppercase; cursor: pointer;
+    flex: 0 0 auto; padding: 9px 12px; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer;
     border-bottom: 2px solid transparent; color: var(--muted);
     transition: all 0.2s; white-space: nowrap; border: none; background: none;
   }
-  .tab.push.active { color: var(--push); border-bottom-color: var(--push); }
-  .tab.pull.active { color: var(--pull); border-bottom-color: var(--pull); }
-  .tab.legs.active { color: var(--legs); border-bottom-color: var(--legs); }
+  .tab.push.active  { color: var(--push); border-bottom-color: var(--push); }
+  .tab.pull.active  { color: var(--pull); border-bottom-color: var(--pull); }
+  .tab.legs.active  { color: var(--legs); border-bottom-color: var(--legs); }
+  .tab.rest.active  { color: var(--rest); border-bottom-color: var(--rest); }
 
   /* PANELS */
   .day-panel { display: none; padding: 14px; }
   .day-panel.active { display: block; }
 
+  /* REST PANEL */
+  .rest-card {
+    background: var(--card); border-radius: 14px; border: 1px solid var(--border);
+    padding: 32px 20px; text-align: center; margin-top: 4px;
+  }
+  .rest-emoji { font-size: 42px; margin-bottom: 12px; }
+  .rest-title { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px; color: var(--rest); margin-bottom: 6px; }
+  .rest-sub { font-size: 13px; color: #555; }
+
   /* DAY CARD */
   .day-card { background: var(--card); border-radius: 14px; overflow: hidden; margin-bottom: 12px; border: 1px solid var(--border); }
-  .day-header { display: flex; align-items: center; justify-content: space-between; padding: 13px 14px 11px; }
-  .day-label { font-family: 'Bebas Neue', sans-serif; font-size: 21px; letter-spacing: 1px; }
+  .day-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px 10px; }
+  .day-label { font-family: 'Bebas Neue', sans-serif; font-size: 19px; letter-spacing: 0.8px; line-height: 1.2; }
   .day-header.push .day-label { color: var(--push); }
   .day-header.pull .day-label { color: var(--pull); }
   .day-header.legs .day-label { color: var(--legs); }
-  .focus-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); background: var(--bg); padding: 3px 8px; border-radius: 6px; }
+  .focus-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); background: var(--bg); padding: 3px 8px; border-radius: 6px; white-space: nowrap; }
 
   /* EXERCISE LIST */
   .ex-list { padding: 0 10px 12px; }
@@ -106,13 +117,29 @@
   .reps-badge { font-size: 11px; font-weight: 500; color: var(--muted); white-space: nowrap; }
 
   .divider { height: 1px; background: var(--border); margin: 5px 8px 7px; }
+
+  /* SAME AS badge */
+  .same-as-note {
+    margin: 0 10px 12px;
+    padding: 10px 12px;
+    background: rgba(0,116,217,0.07);
+    border: 1px solid rgba(0,116,217,0.18);
+    border-radius: 8px;
+    font-size: 11px;
+    color: #557;
+    color: #5599cc;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .same-as-note span { font-size: 14px; }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="title">PPL PROGRAM</div>
-  <div class="subtitle">6-Day Push · Pull · Legs &nbsp;·&nbsp; A / B Split</div>
+  <div class="title">WORKOUT PROGRAM</div>
+  <div class="subtitle">5-Day Hybrid SPLIT</div>
   <div class="legend-pills">
     <span class="pill pill-rir2">🟢 2 RIR</span>
     <span class="pill pill-rir1">🟡 1 RIR</span>
@@ -121,56 +148,40 @@
 </div>
 
 <div class="tab-nav">
-  <button class="tab push active" onclick="showTab('day1',this)">Push A</button>
-  <button class="tab pull"        onclick="showTab('day2',this)">Pull A</button>
-  <button class="tab legs"        onclick="showTab('day3',this)">Legs A</button>
-  <button class="tab push"        onclick="showTab('day4',this)">Push B</button>
-  <button class="tab pull"        onclick="showTab('day5',this)">Pull B</button>
-  <button class="tab legs"        onclick="showTab('day6',this)">Legs B</button>
+  <button class="tab push active" onclick="showTab('mon',this)">Mon</button>
+  <button class="tab pull"        onclick="showTab('tue',this)">Tue</button>
+  <button class="tab legs"        onclick="showTab('wed',this)">Wed</button>
+  <button class="tab rest"        onclick="showTab('thu',this)">Thu</button>
+  <button class="tab push"        onclick="showTab('fri',this)">Fri</button>
+  <button class="tab pull"        onclick="showTab('sat',this)">Sat</button>
 </div>
 
-<!-- ══════════ PUSH A ══════════ -->
-<div id="tab-day1" class="day-panel active">
+<!-- ══════════ MONDAY ══════════ -->
+<div id="tab-mon" class="day-panel active">
   <div class="day-card">
     <div class="day-header push">
-      <span class="day-label">🔴 Push A</span>
-      <span class="focus-tag">Chest Focus</span>
+      <span class="day-label">🔴 Monday</span>
+      <span class="focus-tag">Chest + Arms + Traps</span>
     </div>
     <div class="ex-list">
 
       <div class="ex-item progress">
         <div class="ex-left">
           <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir1"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Flat Bench (DB / Barbell)</span>
+          <span class="ex-name">Flat Bench Press</span>
         </div>
         <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">6–10</span></div>
       </div>
-
-      <div class="ex-item progress">
-        <div class="ex-left">
-          <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir1"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Incline DB Press</span>
-        </div>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">8–12</span></div>
-      </div>
-
-      <div class="ex-item progress">
-        <div class="ex-left">
-          <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir1"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Overhead Shoulder Press</span>
-        </div>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">6–10</span></div>
-      </div>
-
-      <div class="divider"></div>
 
       <div class="ex-item">
         <div class="ex-left">
-          <div class="effort-dots"><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Lateral Raises</span>
+          <div class="effort-dots"><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div></div>
+          <span class="ex-name">Pec Deck — Neutral Position</span>
         </div>
-        <div class="ex-detail"><span class="sets-badge">4 sets</span><span class="reps-badge">12–15</span></div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–15</span></div>
       </div>
+
+      <div class="divider"></div>
 
       <div class="ex-item">
         <div class="ex-left">
@@ -188,33 +199,49 @@
         <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–15</span></div>
       </div>
 
-      <div class="divider"></div>
-
-      <div class="ex-item optional">
+      <div class="ex-item">
         <div class="ex-left">
           <div class="effort-dots"><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Wrist Curls</span>
+          <span class="ex-name">Bicep Curls</span>
         </div>
-        <div class="ex-detail"><span class="sets-badge">2–3 sets</span><span class="reps-badge">15–20</span></div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–12</span></div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="ex-item">
+        <div class="ex-left">
+          <div class="effort-dots"><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div></div>
+          <span class="ex-name">Shrugs</span>
+        </div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–15</span></div>
       </div>
 
     </div>
   </div>
 </div>
 
-<!-- ══════════ PULL A ══════════ -->
-<div id="tab-day2" class="day-panel">
+<!-- ══════════ TUESDAY ══════════ -->
+<div id="tab-tue" class="day-panel">
   <div class="day-card">
     <div class="day-header pull">
-      <span class="day-label">🔵 Pull A</span>
-      <span class="focus-tag">Back Thickness</span>
+      <span class="day-label">🔵 Tuesday</span>
+      <span class="focus-tag">Back + Shoulders</span>
     </div>
     <div class="ex-list">
 
       <div class="ex-item progress">
         <div class="ex-left">
           <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir1"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Seated Cable Row (Close Grip)</span>
+          <span class="ex-name">Overhead Shoulder Press</span>
+        </div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">6–10</span></div>
+      </div>
+
+      <div class="ex-item progress">
+        <div class="ex-left">
+          <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir1"></div><div class="dot fail"></div></div>
+          <span class="ex-name">Seated Cable Row</span>
         </div>
         <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">6–10</span></div>
       </div>
@@ -230,12 +257,20 @@
       <div class="ex-item progress">
         <div class="ex-left">
           <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir1"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Wide D-Handle Cable Row</span>
+          <span class="ex-name">Wide-Grip Cable Row</span>
         </div>
         <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">8–12</span></div>
       </div>
 
       <div class="divider"></div>
+
+      <div class="ex-item">
+        <div class="ex-left">
+          <div class="effort-dots"><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div></div>
+          <span class="ex-name">Lateral Raises</span>
+        </div>
+        <div class="ex-detail"><span class="sets-badge">4 sets</span><span class="reps-badge">12–15</span></div>
+      </div>
 
       <div class="ex-item">
         <div class="ex-left">
@@ -245,37 +280,22 @@
         <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">12–15</span></div>
       </div>
 
-      <div class="ex-item">
-        <div class="ex-left">
-          <div class="effort-dots"><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div></div>
-          <span class="ex-name">DB Bicep Curls</span>
-        </div>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–12</span></div>
-      </div>
-
-      <div class="ex-item">
-        <div class="ex-left">
-          <div class="effort-dots"><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Shrugs</span>
-        </div>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–15</span></div>
-      </div>
-
     </div>
   </div>
 </div>
 
-<!-- ══════════ LEGS A ══════════ -->
-<div id="tab-day3" class="day-panel">
+<!-- ══════════ WEDNESDAY ══════════ -->
+<div id="tab-wed" class="day-panel">
   <div class="day-card">
     <div class="day-header legs">
-      <span class="day-label">🟢 Legs A</span>
+      <span class="day-label">🟢 Wednesday</span>
+      <span class="focus-tag">Legs + Abs</span>
     </div>
     <div class="ex-list">
 
       <div class="ex-item progress">
         <div class="ex-left">
-          <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir2"></div><div class="dot rir1"></div></div>
+          <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir2"></div><div class="dot rir2"></div></div>
           <span class="ex-name">Barbell Squats</span>
         </div>
         <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">5–8</span></div>
@@ -283,8 +303,8 @@
 
       <div class="ex-item progress">
         <div class="ex-left">
-          <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir2"></div><div class="dot rir1"></div></div>
-          <span class="ex-name">Romanian Deadlift (RDL)</span>
+          <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir2"></div><div class="dot rir2"></div></div>
+          <span class="ex-name">RDLs</span>
         </div>
         <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">6–10</span></div>
       </div>
@@ -327,11 +347,21 @@
   </div>
 </div>
 
-<!-- ══════════ PUSH B ══════════ -->
-<div id="tab-day4" class="day-panel">
+<!-- ══════════ THURSDAY — REST ══════════ -->
+<div id="tab-thu" class="day-panel">
+  <div class="rest-card">
+    <div class="rest-emoji">😴</div>
+    <div class="rest-title">Thursday — Rest</div>
+    <div class="rest-sub">Complete rest or light walking / mobility work.</div>
+  </div>
+</div>
+
+<!-- ══════════ FRIDAY ══════════ -->
+<div id="tab-fri" class="day-panel">
   <div class="day-card">
     <div class="day-header push">
-      <span class="day-label">🔴 Push B</span>
+      <span class="day-label">🔴 Friday</span>
+      <span class="focus-tag">Chest + Arms + Traps</span>
     </div>
     <div class="ex-list">
 
@@ -346,28 +376,12 @@
       <div class="ex-item">
         <div class="ex-left">
           <div class="effort-dots"><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Cable Fly (High → Low)</span>
+          <span class="ex-name">Cable Cross (High → Low)</span>
         </div>
         <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">12–15</span></div>
       </div>
 
-      <div class="ex-item progress">
-        <div class="ex-left">
-          <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir1"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Overhead Shoulder Press</span>
-        </div>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">6–10</span></div>
-      </div>
-
       <div class="divider"></div>
-
-      <div class="ex-item">
-        <div class="ex-left">
-          <div class="effort-dots"><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Lateral Raises</span>
-        </div>
-        <div class="ex-detail"><span class="sets-badge">4 sets</span><span class="reps-badge">12–15</span></div>
-      </div>
 
       <div class="ex-item">
         <div class="ex-left">
@@ -385,70 +399,15 @@
         <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–15</span></div>
       </div>
 
-      <div class="divider"></div>
-
-      <div class="ex-item optional">
-        <div class="ex-left">
-          <div class="effort-dots"><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Wrist Curls</span>
-        </div>
-        <div class="ex-detail"><span class="sets-badge">2–3 sets</span><span class="reps-badge">15–20</span></div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- ══════════ PULL B ══════════ -->
-<div id="tab-day5" class="day-panel">
-  <div class="day-card">
-    <div class="day-header pull">
-      <span class="day-label">🔵 Pull B</span>
-      <span class="focus-tag">Lat Width</span>
-    </div>
-    <div class="ex-list">
-
-      <div class="ex-item progress">
-        <div class="ex-left">
-          <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir1"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Lat Pulldown</span>
-        </div>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">6–10</span></div>
-      </div>
-
-      <div class="ex-item progress">
-        <div class="ex-left">
-          <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir1"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Wide D-Handle Cable Row</span>
-        </div>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">8–12</span></div>
-      </div>
-
-      <div class="ex-item progress">
-        <div class="ex-left">
-          <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir1"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Seated Cable Row (Close Grip)</span>
-        </div>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">8–12</span></div>
-      </div>
-
-      <div class="divider"></div>
-
       <div class="ex-item">
         <div class="ex-left">
           <div class="effort-dots"><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Face Pulls</span>
-        </div>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">12–15</span></div>
-      </div>
-
-      <div class="ex-item">
-        <div class="ex-left">
-          <div class="effort-dots"><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Hammer Curls</span>
+          <span class="ex-name">Bicep Curls</span>
         </div>
         <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–12</span></div>
       </div>
+
+      <div class="divider"></div>
 
       <div class="ex-item">
         <div class="ex-left">
@@ -462,26 +421,43 @@
   </div>
 </div>
 
-<!-- ══════════ LEGS B ══════════ -->
-<div id="tab-day6" class="day-panel">
+<!-- ══════════ SATURDAY ══════════ -->
+<div id="tab-sat" class="day-panel">
   <div class="day-card">
-    <div class="day-header legs">
-      <span class="day-label">🟢 Legs B</span>
+    <div class="day-header pull">
+      <span class="day-label">🔵 Saturday</span>
+      <span class="focus-tag">Back + Shoulders</span>
     </div>
     <div class="ex-list">
 
       <div class="ex-item progress">
         <div class="ex-left">
-          <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir1"></div><div class="dot rir1"></div></div>
-          <span class="ex-name">Barbell Squats</span>
+          <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir1"></div><div class="dot fail"></div></div>
+          <span class="ex-name">Overhead Shoulder Press</span>
         </div>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">8–10</span></div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">6–10</span></div>
       </div>
 
       <div class="ex-item progress">
         <div class="ex-left">
           <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir1"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Bulgarian Split Squats (ea. leg)</span>
+          <span class="ex-name">Seated Cable Row</span>
+        </div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">6–10</span></div>
+      </div>
+
+      <div class="ex-item progress">
+        <div class="ex-left">
+          <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir1"></div><div class="dot fail"></div></div>
+          <span class="ex-name">Lat Pulldown</span>
+        </div>
+        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">8–12</span></div>
+      </div>
+
+      <div class="ex-item progress">
+        <div class="ex-left">
+          <div class="effort-dots"><div class="dot rir2"></div><div class="dot rir1"></div><div class="dot fail"></div></div>
+          <span class="ex-name">Wide-Grip Cable Row</span>
         </div>
         <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">8–12</span></div>
       </div>
@@ -490,32 +466,16 @@
 
       <div class="ex-item">
         <div class="ex-left">
-          <div class="effort-dots"><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Leg Extensions</span>
-        </div>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">12–15</span></div>
-      </div>
-
-      <div class="ex-item">
-        <div class="ex-left">
-          <div class="effort-dots"><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Leg Curls</span>
-        </div>
-        <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">10–15</span></div>
-      </div>
-
-      <div class="ex-item">
-        <div class="ex-left">
           <div class="effort-dots"><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Calf Raises</span>
+          <span class="ex-name">Lateral Raises</span>
         </div>
-        <div class="ex-detail"><span class="sets-badge">4 sets</span><span class="reps-badge">12–20</span></div>
+        <div class="ex-detail"><span class="sets-badge">4 sets</span><span class="reps-badge">12–15</span></div>
       </div>
 
       <div class="ex-item">
         <div class="ex-left">
           <div class="effort-dots"><div class="dot fail"></div><div class="dot fail"></div><div class="dot fail"></div></div>
-          <span class="ex-name">Cable Crunches</span>
+          <span class="ex-name">Face Pulls</span>
         </div>
         <div class="ex-detail"><span class="sets-badge">3 sets</span><span class="reps-badge">12–15</span></div>
       </div>
@@ -530,10 +490,10 @@ function showTab(id, el) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-' + id).classList.add('active');
   el.classList.add('active');
-  localStorage.setItem('ppl_active_tab', id);
+  localStorage.setItem('workout_active_tab', id);
 }
 (function restoreTab() {
-  const saved = localStorage.getItem('ppl_active_tab');
+  const saved = localStorage.getItem('workout_active_tab');
   if (!saved) return;
   const panel = document.getElementById('tab-' + saved);
   const btn = document.querySelector(`[onclick="showTab('${saved}',this)"]`);
